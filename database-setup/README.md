@@ -96,3 +96,15 @@ docker run -it --rm mysql mysql -h10.128.0.18 -uroot -p
 ```
 docker run -it --rm mysql mysql -h10.128.0.19 -uroot -p
 ```
+
+## Restore Database  ##
+Note - change the server IP below.
+```
+wget https://downloads.mysql.com/docs/sakila-db.zip
+unzip sakila-db.zip
+cd sakila-db
+docker run -it --rm -v ~/data-porter-agent/database-setup/sakila-db:/temp mysql mysql -h10.128.0.19 -uroot -p
+<enter password>
+source /temp/sakila-schema.sql
+source /temp/sakila-data.sql
+```
