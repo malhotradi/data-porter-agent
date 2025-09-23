@@ -8,11 +8,12 @@ class GenericDBAssessment(ABC):
     
     @classmethod
     @abstractmethod
-    def process_assessment(DBHostName: str,
+    def process_assessment(
+        DBHostName: str,
         DBHostPort:int,
         DBHostUserName: str,
         DBHostUserPass: str
-    ) -> Dict[str, Any]:
+    ):
         """
         Performs a comprehensive database assessment.
 
@@ -28,8 +29,7 @@ class GenericDBAssessment(ABC):
             DBHostUserPass: The password credential for connecting to the database.
 
         Returns:
-            A dictionary containing the assessment results, typically including 
-            status, metrics, configuration warnings, and recommendations. 
+            A dictionary conatining the list of assessment tools for particluar database type. 
             Example structure: 
             {'status': 'Success', 'metrics': {...}, 'recommendations': [...]}
         """
