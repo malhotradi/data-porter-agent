@@ -3,7 +3,7 @@ from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset
 from google.adk.tools.mcp_tool.mcp_toolset import SseConnectionParams 
 
 connection_params=SseConnectionParams(
-        url="http://127.0.0.1:5000/mcp/sse", 
+        url="https://mcp-toolbox-1041111835370.us-central1.run.app", 
         headers={}
 )
 

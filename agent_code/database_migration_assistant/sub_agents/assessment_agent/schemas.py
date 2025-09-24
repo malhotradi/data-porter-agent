@@ -22,23 +22,18 @@ class AssessmentReport(BaseModel):
     Defines the structure of the detailed assessment report.
     This version is updated to match the actual JSON output from the sub-agent.
     """
-    # FIX: The agent is producing a raw string for the summary.
     executive_summary: str = Field(
         description="A string containing the high-level summary.")
     
-    # FIX: The agent is producing a dictionary for server config.
     server_config: Dict[str, Any] = Field(
         description="A dictionary of server configuration parameters.")
     
-    # FIX: The agent is producing a dictionary for the inventory.
     database_inventory: Dict[str, Any] = Field(
         description="A dictionary containing lists of schemas.")
     
-    # FIX: The agent is producing a dictionary for the breakdown.
     schema_breakdown: Dict[str, Any] = Field(
         description="A dictionary where keys are schema names, containing details of tables, views, etc.")
     
-    # FIX: The agent is producing a dictionary for risks.
     risks_and_recommendations: Dict[str, Any] = Field(
         description="A dictionary containing lists of risks and recommendations.")
 

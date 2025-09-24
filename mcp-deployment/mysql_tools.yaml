@@ -7,7 +7,7 @@ sources:
     port: 3306
     database: sakila
     user: root
-    password: password@123
+    password: mysql
 
 tools:
   get_server_info:
