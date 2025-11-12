@@ -1,0 +1,55 @@
+# tools.yaml
+
+sources:
+  my-mysql-source:
+    kind: mysql
+    host: 10.128.0.18
+    port: 3306
+    database: sakila
+    user: root
+    password: mysql
+
+tools:
+  get_server_info:
+    kind: mysql-execute-sql
+    source: my-mysql-source
+    description: Gets the MySQL server version and status.
+
+  run_query:
+    kind: mysql-execute-sql
+    source: my-mysql-source
+    description: Use this tool to execute any valid SQL query.
+
+  get_table_details:
+    kind: mysql-sql
+    source: my-mysql-source
+    description: Retrieves key details for all tables in a given schema, including name, engine, row count, and collation.
+    statement: |
+      SELECT table_name, engine, table_rows, table_collation,ROUND(((data_length + index_length) / 1024 / 1024), 2) AS table_size_mb
+      FROM information_schema.tables 
+      WHERE table_schema = ?;
+    parameters:
+      - name: schema_name
+        type: string
+        description: The name of the database schema to inspect.
+
+  list_routines:
+    kind: mysql-sql
+    source: my-mysql-source
+    description: Lists all stored procedures and functions in a given schema.
+    statement: |
+      SELECT routine_name, routine_type 
+      FROM information_schema.routines 
+      WHERE routine_schema = ?;
+    parameters:
+      - name: schema_name
+        type: string
+        description: The name of the database schema to inspect.
+
+toolsets:
+  # A specific toolset for the assessment agent
+  mysql-assessment-toolset:
+    - get_server_info
+    - run_query
+    - get_table_details
+    - list_routines
